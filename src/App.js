@@ -1,23 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
+import Teacher from './components/Teacher';
+import Employee from './components/Employee';
+import DataBinding from './components/DataBinding';
+import EventBinding from './components/EventBinding';
+import UseState from './components/UseState';
+import UseStateObject from './components/UseStateObject';
+import UseStateArray from './components/UseStateArray';
+import ConditionRender from './components/ConditionRender';
+import DynamicCssClass from './components/DynamicCssClass';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+       <h1>Welcome to ReactJs Tutorial</h1>
+      {/* <DataBinding/> */}
+      {/* <EventBinding/> */}
+      {/* <UseState/> */}
+      {/* <UseStateObject/> */}
+      {/* <UseStateArray/> */}
+      {/* <ConditionRender></ConditionRender> */}
+      <DynamicCssClass/>
     </div>
   );
 }
