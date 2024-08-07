@@ -9,6 +9,7 @@ import UseStateObject from './components/UseStateObject';
 import UseStateArray from './components/UseStateArray';
 import ConditionRender from './components/ConditionRender';
 import DynamicCssClass from './components/DynamicCssClass';
+import MapOperator from './components/MapOperator';
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
       {/* <UseStateObject/> */}
       {/* <UseStateArray/> */}
       {/* <ConditionRender></ConditionRender> */}
-      <DynamicCssClass/>
+      {/* <DynamicCssClass/> */}
+      <MapOperator/>
     </div>
   );
 }
