@@ -29,9 +29,40 @@ const User = () => {
         const res = await axios.post("https://projectapi.gerasim.in/api/BudgetPlanner/AddNewUser",userObj );
         if(res.data.result) {
             alert("User Created Success")
+            getUsers();
         } else {
             alert(res.data.message)
         }
+    } 
+    const onUpdate = async () => { 
+      const res = await axios.post("https://projectapi.gerasim.in/api/BudgetPlanner/UpdateUser",userObj );
+      if(res.data.result) {
+          alert("User updated Success")
+          getUsers();
+      } else {
+          alert(res.data.message)
+      }
+  }
+
+  const onDelete = async (id) => { 
+    const isDelet =  window.confirm("Are you sure want ot Delete")
+    if(isDelet) {
+      const res = await axios.delete("https://projectapi.gerasim.in/api/BudgetPlanner/DeleteUserByUserId?userId="+id );
+      if(res.data.result) {
+          alert("User Deleted Success")
+          getUsers();
+      } else {
+          alert(res.data.message)
+      }
+    }
+    
+}
+
+  
+    
+
+    const onEdit = (data)=>{
+      setUserObj(data)
     }
   return (
     <div>
@@ -55,6 +86,7 @@ const User = () => {
                     <th>Email</th>
                     <th>Full Name</th>
                     <th>Project Name</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -66,6 +98,10 @@ const User = () => {
                                 <td>{item.emailId}</td>
                                 <td>{item.fullName}</td>
                                 <td>{item.projectName}</td>
+                                <td>
+                                  <button onClick={()=>onEdit(item)} className="btn btn-primary">Edit</button>
+                                  <button onClick={()=> onDelete(item.userId)} className="btn btn-danger">Delete</button>
+                                </td>
                               </tr>)
                         })
                     }
@@ -82,32 +118,38 @@ const User = () => {
               <div className="row">
                 <div className="col-6">
                   <label>User Name</label>
-                  <input type="text" className="form-control" onChange={(event)=>updateFormValue(event,'userName')} />
+                  <input type="text" value={userObj.userName} className="form-control" onChange={(event)=>updateFormValue(event,'userName')} />
                 </div>
                 <div className="col-6">
                   <label>Email Id</label>
-                  <input type="text" className="form-control" onChange={(event)=>updateFormValue(event,'emailId')} />
+                  <input type="text" value={userObj.emailId} className="form-control" onChange={(event)=>updateFormValue(event,'emailId')} />
                 </div>
                 <div className="col-6">
                   <label>Full nmame</label>
-                  <input type="text" className="form-control" onChange={(event)=>updateFormValue(event,'fullName')} />
+                  <input type="text" value={userObj.fullName} className="form-control" onChange={(event)=>updateFormValue(event,'fullName')} />
                 </div>
                 <div className="col-6">
                   <label>Role</label>
-                  <input type="text" className="form-control" onChange={(event)=>updateFormValue(event,'role')} />
+                  <input type="text" value={userObj.role} className="form-control" onChange={(event)=>updateFormValue(event,'role')} />
                 </div>
                 <div className="col-6">
                   <label>password</label>
-                  <input type="text" className="form-control" onChange={(event)=>updateFormValue(event,'password')} />
+                  <input type="text" value={userObj.password} className="form-control" onChange={(event)=>updateFormValue(event,'password')} />
                 </div>
                 <div className="col-6">
                   <label>Project Name</label>
-                  <input type="text" className="form-control" onChange={(event)=>updateFormValue(event,'projectName')} />
+                  <input type="text" value={userObj.projectName} className="form-control" onChange={(event)=>updateFormValue(event,'projectName')} />
                 </div>
               </div>
               <div className="row">
                 <div className="col-12">
-                  <button className="btn btn-success" onClick={onSaveUser}>Save User</button>
+                  {
+                    userObj.userId == 0 &&   <button className="btn btn-success" onClick={onSaveUser}>Save User</button>
+                  }
+                  {
+                    userObj.userId !== 0 &&  <button className="btn btn-warning" onClick={onUpdate}>Update User</button>
+                  }
+                
                 </div>
               </div>
             </div>
