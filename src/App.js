@@ -12,6 +12,7 @@ import MapOperator from './components/MapOperator';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import GetApi from './components/GetApi';
 import User from './components/User';
+import UseEffect from './components/UseEffect';
 
 function App() {
   return (
@@ -38,6 +39,9 @@ function App() {
               <li className="nav-item">
               <Link className="nav-link active" to="/User">User</Link> 
               </li>
+              <li className="nav-item">
+              <Link className="nav-link active" to="/UseEffect">UseEffect</Link> 
+              </li>
             </ul>
           </div>
         </nav>
@@ -46,6 +50,7 @@ function App() {
           <Route path='/data-binding' element={<DataBinding></DataBinding>} ></Route>
           <Route path='/get-api' element={<GetApi></GetApi>} ></Route>
           <Route path='/User' element={<User></User>} ></Route>
+          <Route path='/UseEffect' element={<UseEffect></UseEffect>} ></Route>
           <Route path='/Event-binding' element={<EventBinding></EventBinding>} ></Route>
           <Route path='/usestate' element={<UseState></UseState>} ></Route>
           <Route path='/condition-render' element={<ConditionRender></ConditionRender>} ></Route>
